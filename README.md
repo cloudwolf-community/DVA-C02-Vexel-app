@@ -24,10 +24,10 @@ It is designed as a tutorial example for learners preparing for the AWS Develope
 ### /scripts
 - stop_server.sh # Stop systemd service script
 - before_install.sh # Pre-install update script
-- after_install.sh # Unpack deployment package script
+- install.sh # Unpack deployment package script
+- after_install.sh # Setup systemd service unit script
 - start_server.sh # Start systemd service script
 - validate.sh # HTTP health check script
-- setup_systemd.sh # (Optional) Setup systemd service unit script
 - flask-app.service # systemd service unit file
 
 ### /static_src
