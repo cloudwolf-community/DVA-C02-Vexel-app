@@ -1,10 +1,14 @@
-from flask import Flask, render_template, jsonify, request
+import os
+from flask import Flask, render_template
 
-app = Flask(__name__, static_folder='static', template_folder='templates')
+app_root = os.path.dirname(os.path.abspath(__file__))
+template_dir = os.path.join(app_root, '..', 'templates')
+static_dir = os.path.join(app_root, '..', 'static')
+
+app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
 @app.route('/')
 def home():
-    # Render the HTML welcome page, using Flask’s built-in template engine
     return render_template("index.html", appname="Vexel-app")
 
 @app.route('/order', methods=['POST'])
