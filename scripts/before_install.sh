@@ -16,7 +16,5 @@ python3 -m ensurepip --upgrade
 sudo ln -sf /usr/bin/python3.11 /usr/bin/python3
 sudo ln -sf /usr/lib/python3.11/site-packages/pip /usr/bin/pip
 
-# Ensure deployment directory exists and permissions are correct
-sudo mkdir -p /home/ec2-user/flask-app
-sudo chown ec2-user:ec2-user /home/ec2-user/flask-app
-sudo chmod 755 /home/ec2-user/flask-app
+# Ensure deployment directory exists 
+mkdir -p /home/ec2-user/flask-app
