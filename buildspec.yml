@@ -14,14 +14,13 @@ phases:
       - echo Building static assets...
       - mkdir -p static
       - sass static_src/style.scss static/style.css --no-source-map --style=compressed
-      - cp templates/index.html index.html
       - cp static_src/banner.png static/banner.png      
       - echo Running unit tests...
       - nohup python app/app.py &
       - sleep 2
       - curl -f http://localhost:80/
       - echo Packaging app for deployment...
-      - zip -r deployment-package.zip app scripts static appspec.yml requirements.txt 
+      - zip -r deployment-package.zip app scripts static templates appspec.yml requirements.txt 
   post_build:
     commands:
       - echo Build completed on `date`
