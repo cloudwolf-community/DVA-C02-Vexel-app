@@ -13,7 +13,7 @@ phases:
       - nohup python app/app.py &
       - sleep 3
       - curl -f http://localhost:5000/
-      - pkill -f "python app.py"
+      - pkill -f "python app.py" || true
       - echo Packaging app for deployment...
       - zip -r deployment-package.zip .
   post_build:
