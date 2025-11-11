@@ -10,10 +10,11 @@ sudo dnf update -y
 sudo dnf install python3.11 python3.11-pip -y
 
 # Install pip if not included
-sudo python3 -m ensurepip --upgrade
+python3 -m ensurepip --upgrade
 
 # Create symlink if needed
 sudo ln -sf /usr/bin/python3.11 /usr/bin/python3
+sudo ln -sf /usr/lib/python3.11/site-packages/pip /usr/bin/pip
 
 # Ensure deployment directory exists and permissions are correct
 sudo mkdir -p /home/ec2-user/flask-app
