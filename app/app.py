@@ -1,5 +1,5 @@
-from flask import Flask, render_template, jsonify, request
 import os
+from flask import Flask, render_template, jsonify, request
 
 app_root = os.path.dirname(os.path.abspath(__file__))
 template_dir = os.path.join(app_root, '..', 'templates')
@@ -7,14 +7,17 @@ static_dir = os.path.join(app_root, '..', 'static')
 
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
+# Seed example recent orders
+recent_orders = [
+    {"order_id": "101", "item": "Keyboard", "quantity": 1},
+    {"order_id": "102", "item": "Mouse", "quantity": 2},
+    {"order_id": "103", "item": "Monitor", "quantity": 1}
+]
+
 @app.route('/')
 def home():
-    features = [
-        "Automated deployment with AWS",
-        "Static asset handling",
-        "RESTful API for order processing"
-    ]
-    return render_template("index.html", appname="Vexel-app", features=features)
+    appname = "Vexel-app"
+    return render_template("index.html", appname=appname, recent_orders=recent_orders)
 
 @app.route('/order', methods=['POST'])
 def process_order():
@@ -25,6 +28,12 @@ def process_order():
             return jsonify({"error": f"Missing field {field}"}), 400
     if not isinstance(order["quantity"], int) or order["quantity"] <= 0:
         return jsonify({"error": "Quantity must be positive integer"}), 400
+
+    recent_orders.append(order)
+    # Keep only last 10 orders:
+    if len(recent_orders) > 10:
+        recent_orders.pop(0)
+
     return jsonify({"status": "success", "order_id": order["order_id"]})
 
 if __name__ == "__main__":
