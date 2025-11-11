@@ -12,6 +12,8 @@ phases:
   build:
     commands:
       - echo Building static assets...
+      - ls -la
+      - ls -la templates
       - mkdir -p static
       - sass static_src/style.scss static/style.css --no-source-map --style=compressed
       - cp static_src/banner.png static/banner.png      
