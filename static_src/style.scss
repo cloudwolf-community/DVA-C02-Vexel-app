@@ -1,12 +1,59 @@
-// Example SCSS styling
+// Vexel-app SCSS styling
 $primary-color: #3498db;
+$secondary-bg: #293548;
+$text-color: #ffffff;
+$heading-color: #66cfff;
 
 body {
     background-color: $primary-color;
-    font-family: Arial, sans-serif;
-    color: white;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: $text-color;
+    margin: 0;
+}
+
+.container {
+    max-width: 700px;
+    margin: 48px auto;
+    background: $secondary-bg;
+    border-radius: 14px;
+    box-shadow: 0 0 24px rgba(0,0,0,0.15);
+    padding: 36px 36px 40px 36px;
+    text-align: center;
 }
 
 h1 {
-    font-size: 2em;
+    color: $heading-color;
+    font-size: 2.3em;
+    margin-bottom: 14px;
+}
+
+.features {
+    margin-top: 28px;
+    text-align: left;
+
+    h2 {
+        color: lighten($heading-color, 15%);
+        font-size: 1.3em;
+        border-bottom: 1px solid rgba(255,255,255,0.15);
+        padding-bottom: 3px;
+        margin-bottom: 12px;
+    }
+    ul {
+        list-style: disc inside;
+        font-size: 1.1em;
+        margin: 0 auto 12px auto;
+        max-width: 370px;
+        li {
+            margin-bottom: 7px;
+        }
+    }
+}
+
+img {
+    margin: 24px auto 10px auto;
+    border-radius: 8px;
+    box-shadow: 0 3px 16px rgba(0,0,0,0.11);
+    max-width: 400px;
+    width: 100%;
+    height: auto;
 }

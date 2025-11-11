@@ -1,11 +1,11 @@
-from flask import Flask, jsonify, request, send_from_directory
-import os
+from flask import Flask, render_template, jsonify, request
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__, static_folder='static', template_folder='templates')
 
 @app.route('/')
 def home():
-    return jsonify({"message": "Welcome to the Flask EC2 deployment example!"})
+    # Render the HTML welcome page, using Flask’s built-in template engine
+    return render_template("index.html", appname="Vexel-app")
 
 @app.route('/order', methods=['POST'])
 def process_order():
@@ -20,7 +20,7 @@ def process_order():
 
 @app.route('/static/<path:filename>')
 def serve_static(filename):
-    return send_from_directory(os.path.join(app.root_path, 'static'), filename)
+    return app.send_from_directory(app.static_folder, filename)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
