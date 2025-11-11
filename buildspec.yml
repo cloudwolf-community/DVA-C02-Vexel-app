@@ -17,7 +17,7 @@ phases:
       - echo Running unit tests...
       - nohup python app/app.py &
       - sleep 3
-      - curl -f http://localhost:5000/
+      - curl -f http://localhost:80/
       - pkill -f "python app.py" || true
       - echo Packaging app for deployment...
       - zip -r deployment-package.zip app scripts static appspec.yml requirements.txt
