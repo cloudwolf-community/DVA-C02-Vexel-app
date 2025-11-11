@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>{{ appname }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+   <meta charset="UTF-8">
+   <title>{{ appname }}</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to {{ appname }}</h1>
-        <p>This is a demo Flask deployment on EC2 using AWS CodeDeploy and CodePipeline.</p>
-        <img src="{{ url_for('static', filename='banner.png') }}" alt="Vexel Banner" style="max-width:100%;height:auto;">
-        <div class="features">
-            <h2>Main Features</h2>
-            <ul>
-                <li>Automated deployment with AWS</li>
-                <li>Static asset handling</li>
-                <li>RESTful API for order processing</li>
-            </ul>
-        </div>
-    </div>
+   <div class="container">
+     <h1>Welcome to {{ appname }}</h1>
+     <p>This is a demo Flask deployment on EC2 using AWS CodeDeploy and CodePipeline.</p>
+     <img src="{{ url_for('static', filename='banner.png') }}" alt="Vexel Banner" />
+     <div class="features">
+       <h2>Main Features</h2>
+       <ul>
+         {% for feature in features %}
+           <li>{{ feature }}</li>
+         {% endfor %}
+       </ul>
+     </div>
+   </div>
 </body>
 </html>

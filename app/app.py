@@ -1,5 +1,5 @@
+from flask import Flask, render_template, jsonify, request
 import os
-from flask import Flask, render_template
 
 app_root = os.path.dirname(os.path.abspath(__file__))
 template_dir = os.path.join(app_root, '..', 'templates')
@@ -9,7 +9,12 @@ app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
 @app.route('/')
 def home():
-    return render_template("index.html", appname="Vexel-app")
+    features = [
+        "Automated deployment with AWS",
+        "Static asset handling",
+        "RESTful API for order processing"
+    ]
+    return render_template("index.html", appname="Vexel-app", features=features)
 
 @app.route('/order', methods=['POST'])
 def process_order():
@@ -21,10 +26,6 @@ def process_order():
     if not isinstance(order["quantity"], int) or order["quantity"] <= 0:
         return jsonify({"error": "Quantity must be positive integer"}), 400
     return jsonify({"status": "success", "order_id": order["order_id"]})
-
-@app.route('/static/<path:filename>')
-def serve_static(filename):
-    return app.send_from_directory(app.static_folder, filename)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
