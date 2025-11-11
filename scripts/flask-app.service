@@ -3,7 +3,7 @@ Description=Flask EC2 Deployment Example
 After=network.target
 
 [Service]
-User=ec2-user
+User=root
 WorkingDirectory=/home/ec2-user/flask-app/app
 ExecStart=/usr/bin/python3 app.py
 Restart=always
