@@ -1,6 +1,7 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 @app.route('/')
 def home():
@@ -16,6 +17,10 @@ def process_order():
     if not isinstance(order["quantity"], int) or order["quantity"] <= 0:
         return jsonify({"error": "Quantity must be positive integer"}), 400
     return jsonify({"status": "success", "order_id": order["order_id"]})
+
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory(os.path.join(app.root_path, 'static'), filename)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
