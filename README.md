@@ -29,6 +29,10 @@ It is designed as a tutorial example for learners preparing for the AWS Develope
 - validate.sh # HTTP health check script
 - setup_systemd.sh # (Optional) Setup systemd service unit script
 - flask-app.service # systemd service unit file
+
+### /static_src
+- style.scss
+
 ### /
 - appspec.yml # CodeDeploy deployment spec file
 - buildspec.yml # CodeBuild build spec file

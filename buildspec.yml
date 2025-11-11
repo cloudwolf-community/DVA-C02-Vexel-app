@@ -7,18 +7,24 @@ phases:
     commands:
       - echo Installing dependencies...
       - pip install -r requirements.txt
+      - echo Installing sass compiler...
+      - npm install -g sass
   build:
     commands:
+      - echo Building static assets...
+      - mkdir -p static
+      - sass static_src/style.scss static/style.css --no-source-map --style=compressed
       - echo Running unit tests...
       - nohup python app/app.py &
       - sleep 3
       - curl -f http://localhost:5000/
       - pkill -f "python app.py" || true
       - echo Packaging app for deployment...
-      - zip -r deployment-package.zip .
+      - zip -r deployment-package.zip app scripts static appspec.yml requirements.txt
   post_build:
     commands:
       - echo Build completed on `date`
+
 artifacts:
   files:
     - deployment-package.zip
