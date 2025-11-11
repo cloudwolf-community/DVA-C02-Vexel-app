@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo systemctl stop flask-app || true
+sudo systemctl stop flask-app

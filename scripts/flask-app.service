@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User=ec2-user
 WorkingDirectory=/home/ec2-user/flask-app/app
-ExecStart=/usr/bin/python3.13 app.py
+ExecStart=/usr/bin/python3 app.py
 Restart=always
 RestartSec=5
 StandardOutput=syslog
