@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Update OS packages
 sudo yum update -y
 
@@ -7,6 +8,9 @@ sudo dnf update -y
 
 # Install Python 3.11 (latest available)
 sudo dnf install python3.11 python3.11-pip -y
+
+# Install pip if not included
+sudo python3 -m ensurepip --upgrade
 
 # Create symlink if needed
 sudo ln -sf /usr/bin/python3.11 /usr/bin/python3
