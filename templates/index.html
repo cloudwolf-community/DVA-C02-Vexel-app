@@ -1,20 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>{{ appname }}</title>
+<meta charset="UTF-8" />
+<title>{{ appname }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script>
+  async function submitOrder(event) {
+    event.preventDefault();
+    const order_id = document.getElementById('order_id').value;
+    const item = document.getElementById('item').value;
+    const quantity = parseInt(document.getElementById('quantity').value);
+
+    const response = await fetch('/order', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({order_id, item, quantity})
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      // Update recent orders list dynamically
+      const ul = document.getElementById('orders_list');
+      const li = document.createElement('li');
+      li.textContent = `Order ID: ${order_id}, Item: ${item}, Quantity: ${quantity}`;
+      ul.appendChild(li);
+      document.getElementById('order_form').reset();
+      alert('Order submitted successfully!');
+    } else {
+      alert('Error: ' + result.error);
+    }
+  }
+</script>
 </head>
 <body>
+  <div class="container">
     <h1>Welcome to {{ appname }}</h1>
-    <p>Recent Orders:</p>
-    <ul>
-    {% if recent_orders %}
+    <img src="{{ url_for('static', filename='banner.png') }}" alt="Vexel Banner" style="max-width:400px; border-radius:8px; box-shadow: 0 2px 8px #0002;">
+    
+    <h2>Submit a new order</h2>
+    <form id="order_form" onsubmit="submitOrder(event)">
+      <label for="order_id">Order ID:</label>
+      <input id="order_id" name="order_id" required><br>
+      
+      <label for="item">Item:</label>
+      <input id="item" name="item" required><br>
+      
+      <label for="quantity">Quantity:</label>
+      <input id="quantity" name="quantity" type="number" min="1" required><br>
+      
+      <button type="submit">Submit Order</button>
+    </form>
+
+    <h2>Recent Orders</h2>
+    <ul id="orders_list">
+      {% if recent_orders %}
         {% for order in recent_orders %}
-            <li>Order ID: {{ order.order_id }}, Item: {{ order.item }}, Quantity: {{ order.quantity }}</li>
+          <li>Order ID: {{ order.order_id }}, Item: {{ order.item }}, Quantity: {{ order.quantity }}</li>
         {% endfor %}
-    {% else %}
+      {% else %}
         <li>No orders yet.</li>
-    {% endif %}
+      {% endif %}
     </ul>
+  </div>
 </body>
 </html>

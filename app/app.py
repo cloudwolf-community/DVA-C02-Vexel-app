@@ -7,7 +7,7 @@ static_dir = os.path.join(app_root, '..', 'static')
 
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
-# Seed example recent orders
+# In-memory store for recent orders
 recent_orders = [
     {"order_id": "101", "item": "Keyboard", "quantity": 1},
     {"order_id": "102", "item": "Mouse", "quantity": 2},
@@ -30,7 +30,6 @@ def process_order():
         return jsonify({"error": "Quantity must be positive integer"}), 400
 
     recent_orders.append(order)
-    # Keep only last 10 orders:
     if len(recent_orders) > 10:
         recent_orders.pop(0)
 
