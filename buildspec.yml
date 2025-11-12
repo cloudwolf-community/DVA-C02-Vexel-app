@@ -9,6 +9,10 @@ phases:
       - pip install -r requirements.txt
       - echo Installing sass compiler...
       - npm install -g sass
+      - echo Installing redis...
+      - sudo yum update -y && sudo yum install -y epel-release redis-server
+      - sudo systemctl start redis
+
   build:
     commands:
       - echo Building static assets...

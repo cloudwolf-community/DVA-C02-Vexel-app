@@ -3,6 +3,9 @@
 # Update OS packages
 sudo yum update -y
 
+# Install Redis server
+sudo yum install -y epel-release redis-server
+
 # Update system
 sudo dnf update -y
 

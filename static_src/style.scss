@@ -1,13 +1,15 @@
-$primary-bg: #233044;
-$accent-bg: #38b6ff;
-$header-blue: #64C2FF;
-$text-main: #EFF6FF;
-$text-light: #B8C5D1;
+$background-main: #F4F6FB;
+$card-bg: #ffffff;
+$header-blue: #2D7DCA;
+$text-dark: #27364e;
+$text-light: #5C6C85;
+$accent-grey: #E6EAF3;
+$input-bg: #F9FBFE;
 
 body {
-    background-color: $accent-bg;
+    background: $background-main;
     font-family: 'Segoe UI', Arial, sans-serif;
-    color: $text-main;
+    color: $text-dark;
     margin: 0;
     min-height: 100vh;
 }
@@ -15,91 +17,103 @@ body {
 .container {
     max-width: 680px;
     margin: 48px auto;
-    background: $primary-bg;
-    border-radius: 18px;
-    box-shadow: 0 8px 32px rgba(35,48,68,0.22);
-    padding: 42px 36px;
+    background: $card-bg;
+    border-radius: 17px;
+    box-shadow: 0 6px 28px #0001;
+    padding: 52px 36px 36px 36px;
     text-align: center;
 }
 
 h1 {
     color: $header-blue;
-    font-size: 2.4em;
-    margin-bottom: 18px;
+    font-size: 2.25em;
+    font-weight: bold;
+    margin-bottom: 20px;
     letter-spacing: 1px;
 }
 
 img.banner {
-    margin: 20px auto 32px auto;
-    border-radius: 10px;
-    box-shadow: 0 6px 24px rgba(56,182,255,0.15);
+    margin: 18px auto 28px auto;
+    border-radius: 12px;
+    background: #ffffff;
     max-width: 320px;
     width: 100%;
-    height: auto;
-    background: #fff2;
+    box-shadow: 0 2px 10px #0002;
 }
 
 form {
-    margin: 24px auto 28px auto;
-    text-align: left;
-    max-width: 280px;
-    background: #27364e;
+    background: $accent-grey;
     border-radius: 10px;
-    padding: 20px 16px;
-    box-shadow: 0 1px 8px #0002;
+    margin: 32px auto 34px auto;
+    padding: 18px 16px 12px 16px;
+    max-width: 280px;
+    box-shadow: 0 1px 10px #0001;
+    text-align: left;
+
     label {
         color: $header-blue;
         font-weight: 600;
         display: block;
-        margin-bottom: 6px;
+        margin-bottom: 5px;
     }
     input, button {
-        margin-bottom: 10px;
+        display: block;
+        margin-bottom: 14px;
         width: 100%;
-        padding: 8px;
+        padding: 9px;
         border-radius: 5px;
-        border: none;
+        border: 1px solid $accent-grey;
+        background: $input-bg;
         font-size: 1em;
+    }
+    input:focus, button:focus {
+        outline: 2px solid $header-blue;
     }
     button {
         background: $header-blue;
-        color: $primary-bg;
-        font-weight: bold;
+        color: #fff;
+        font-weight: 700;
+        border: none;
+        margin-top: 10px;
         cursor: pointer;
-        transition: background 0.2s;
+        transition: background 0.12s;
         &:hover {
-            background: darken($header-blue, 12%);
+            background: darken($header-blue, 10%);
         }
     }
 }
 
 .recent-orders {
-    margin-top: 24px;
+    margin-top: 28px;
     h2 {
         color: $header-blue;
-        font-size: 1.3em;
-        margin-bottom: 16px;
+        font-size: 1.19em;
+        margin-bottom: 18px;
+        font-weight: 650;
     }
     .orders-list {
         display: flex;
         flex-direction: column;
-        gap: 13px;
+        gap: 14px;
         align-items: center;
     }
     .order-card {
-        background: #27364e;
-        color: $text-light;
+        background: $accent-grey;
+        color: $text-dark;
         border-radius: 11px;
-        box-shadow: 0 1px 4px #0001;
-        padding: 14px 24px;
-        min-width: 0;
-        width: 90%;
-        max-width: 400px;
-        font-size: 1.05em;
+        box-shadow: 0 1px 6px #0001;
+        padding: 16px 20px;
+        width: 94%;
+        max-width: 390px;
         text-align: left;
-        transition: box-shadow 0.2s;
-        &:hover {
-            box-shadow: 0 4px 18px #00bbff33;
-        }
+        font-size: 1.07em;
+        font-weight: 500;
+    }
+    .order-card span {
+        margin: 2px 0;
+        color: $text-dark;
+    }
+    .order-card strong {
+        color: $header-blue;
     }
 }
