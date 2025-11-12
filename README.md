@@ -8,7 +8,7 @@ It is designed as a tutorial example for learners preparing for the AWS Develope
 
 ## Features
 
-- Simple Python 3.13 Flask web application with basic order processing API
+- Simple Python 3.11 Flask web application with basic order processing API
 - Automated dependency installation and testing in CodeBuild
 - Packaging and deployment artifact creation in CodeBuild
 - CodeDeploy lifecycle hooks to manage the application service on EC2 using systemd
