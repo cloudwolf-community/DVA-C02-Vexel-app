@@ -1,66 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>{{ appname }}</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<script>
-  async function submitOrder(event) {
-    event.preventDefault();
-    const order_id = document.getElementById('order_id').value;
-    const item = document.getElementById('item').value;
-    const quantity = parseInt(document.getElementById('quantity').value);
-
-    const response = await fetch('/order', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({order_id, item, quantity})
-    });
-
-    const result = await response.json();
-    if (response.ok) {
-      // Update recent orders list dynamically
-      const ul = document.getElementById('orders_list');
-      const li = document.createElement('li');
-      li.textContent = `Order ID: ${order_id}, Item: ${item}, Quantity: ${quantity}`;
-      ul.appendChild(li);
-      document.getElementById('order_form').reset();
-      alert('Order submitted successfully!');
-    } else {
-      alert('Error: ' + result.error);
-    }
-  }
-</script>
+    <meta charset="UTF-8" />
+    <title>{{ appname }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+      async function submitOrder(event) {
+        event.preventDefault();
+        const order_id = document.getElementById('order_id').value;
+        const item = document.getElementById('item').value;
+        const quantity = parseInt(document.getElementById('quantity').value);
+        const response = await fetch('/order', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({order_id, item, quantity})
+        });
+        const result = await response.json();
+        if (response.ok) {
+          addOrderCard(order_id, item, quantity);
+          document.getElementById('order_form').reset();
+          alert('Order submitted successfully!');
+        } else {
+          alert('Error: ' + result.error);
+        }
+      }
+      function addOrderCard(order_id, item, quantity) {
+        const card = document.createElement('div');
+        card.className = 'order-card';
+        card.innerHTML = `
+          <span><strong>Order ID:</strong> ${order_id}</span><br>
+          <span><strong>Item:</strong> ${item}</span><br>
+          <span><strong>Quantity:</strong> ${quantity}</span>
+        `;
+        document.getElementById('orders_list').appendChild(card);
+      }
+    </script>
 </head>
 <body>
   <div class="container">
     <h1>Welcome to {{ appname }}</h1>
-    <img src="{{ url_for('static', filename='banner.png') }}" alt="Vexel Banner" style="max-width:400px; border-radius:8px; box-shadow: 0 2px 8px #0002;">
-    
-    <h2>Submit a new order</h2>
+    <img src="{{ url_for('static', filename='banner.jpg') }}" class="banner" alt="Banner">
     <form id="order_form" onsubmit="submitOrder(event)">
+      <h2>Submit a new order</h2>
       <label for="order_id">Order ID:</label>
-      <input id="order_id" name="order_id" required><br>
-      
+      <input id="order_id" name="order_id" required>
       <label for="item">Item:</label>
-      <input id="item" name="item" required><br>
-      
+      <input id="item" name="item" required>
       <label for="quantity">Quantity:</label>
-      <input id="quantity" name="quantity" type="number" min="1" required><br>
-      
+      <input id="quantity" name="quantity" type="number" min="1" required>
       <button type="submit">Submit Order</button>
     </form>
-
-    <h2>Recent Orders</h2>
-    <ul id="orders_list">
-      {% if recent_orders %}
-        {% for order in recent_orders %}
-          <li>Order ID: {{ order.order_id }}, Item: {{ order.item }}, Quantity: {{ order.quantity }}</li>
-        {% endfor %}
-      {% else %}
-        <li>No orders yet.</li>
-      {% endif %}
-    </ul>
+    <div class="recent-orders">
+      <h2>Recent Orders</h2>
+      <div class="orders-list" id="orders_list">
+        {% if recent_orders %}
+          {% for order in recent_orders %}
+            <div class="order-card">
+              <span><strong>Order ID:</strong> {{ order.order_id }}</span><br>
+              <span><strong>Item:</strong> {{ order.item }}</span><br>
+              <span><strong>Quantity:</strong> {{ order.quantity }}</span>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="order-card">No orders yet.</div>
+        {% endif %}
+      </div>
+    </div>
   </div>
 </body>
 </html>

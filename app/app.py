@@ -32,7 +32,6 @@ def process_order():
     recent_orders.append(order)
     if len(recent_orders) > 10:
         recent_orders.pop(0)
-
     return jsonify({"status": "success", "order_id": order["order_id"]})
 
 if __name__ == "__main__":
