@@ -10,7 +10,7 @@ phases:
       - echo Installing sass compiler...
       - npm install -g sass
       - echo Installing and starting redis...
-      - sudo dnf install redis6
+      - sudo dnf install -y redis6
       - sudo systemctl start redis6
 
   build:
