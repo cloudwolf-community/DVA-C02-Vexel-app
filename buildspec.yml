@@ -19,15 +19,12 @@ phases:
       - nohup python app/app.py &
       - sleep 2
       - curl -f http://localhost:80/
-      - echo Packaging app for deployment...
-      - zip -r deployment-package.zip app scripts static templates appspec.yml requirements.txt 
   post_build:
     commands:
       - echo Build completed on `date`
 
 artifacts:
   files:
-    - deployment-package.zip
     - app/*
     - scripts/*
     - static/* 
