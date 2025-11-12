@@ -10,8 +10,8 @@ phases:
       - echo Installing sass compiler...
       - npm install -g sass
       - echo Installing and starting redis...
-      - sudo yum update -y && sudo yum install -y redis
-      - sudo systemctl start redis
+      - sudo dnf install redis6
+      - sudo systemctl start redis6
 
   build:
     commands:
