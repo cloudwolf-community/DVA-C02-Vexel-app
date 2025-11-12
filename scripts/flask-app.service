@@ -1,5 +1,5 @@
 [Unit]
-Description=Flask EC2 Deployment Example
+Description=Vexel-app Deployment Example
 After=network.target
 
 [Service]

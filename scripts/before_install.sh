@@ -6,9 +6,6 @@ sudo yum update -y
 # Update system
 sudo dnf update -y
 
-# Install Redis server
-sudo dnf install -y redis6
-
 # Install Python 3.11 (latest available)
 sudo dnf install -y python3.11 python3.11-pip
 

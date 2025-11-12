@@ -9,9 +9,6 @@ phases:
       - pip install -r requirements.txt
       - echo Installing sass compiler...
       - npm install -g sass
-      - echo Installing and starting redis...
-      - sudo dnf install -y redis6
-
   build:
     commands:
       - echo Building static assets...
