@@ -23,7 +23,6 @@ It is designed as a tutorial example for learners preparing for the AWS Develope
 - app.py # Flask app code
 ### /scripts
 - before_install.sh # Pre-install update script
-- install.sh # Deploy package and dependencies script
 - after_install.sh # Setup systemd service unit script
 - start_server.sh # Start systemd service script
 - stop_server.sh # Stop systemd service script
