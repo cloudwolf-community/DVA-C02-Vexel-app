@@ -10,7 +10,7 @@ It is designed as a tutorial example for learners preparing for the AWS Develope
 
 - Simple Python 3.11 Flask web application with basic order processing API
 - Automated dependency installation and testing in CodeBuild
-- Packaging and deployment artifact creation in CodeBuild
+- Packaging and deployment artifact creation in CodeBuild 
 - CodeDeploy lifecycle hooks to manage the application service on EC2 using systemd
 - Automated creation, start, stop, and validation of the Flask service on EC2
 - Health check validation using HTTP requests to ensure successful deployment
